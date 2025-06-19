@@ -1,0 +1,20 @@
+[Sửa Login.vue] - Gọi API backend /api/login, nếu thành công chuyển sang /user-home, nếu thất bại báo lỗi. (Tự động ghi nhận bởi AI) 
+
+[Kiểm tra đăng nhập] - Backend trả về status 401 khi sai tài khoản/mật khẩu, frontend luôn báo 'Đăng nhập thất bại!' do chỉ kiểm tra err.response?.data?.message. (Tự động ghi nhận bởi AI) 
+
+[Sửa Login.vue] - Hiển thị đúng message lỗi từ backend khi đăng nhập sai, không chỉ báo 'Đăng nhập thất bại!'. (Tự động ghi nhận bởi AI) 
+
+[Sửa backend/index.js] - Đổi tên database kết nối từ 'library_management' thành 'QLTV' để đúng với dữ liệu MongoDB thực tế. (Tự động ghi nhận bởi AI) 
+
+[UserHome.vue] 2024-05-18:
+- Chuyển thanh menu từ ngang sang dọc (sidebar bên trái).
+- Thêm icon SVG cho từng mục menu (Trang chủ, Tìm kiếm, Sách, Cài đặt, Hỗ trợ, Đăng xuất).
+- Chia menu thành 2 phần: MAIN MENU và SUPPORT, giống giao diện mẫu.
+- Phần nội dung chính (main-content) để trống, có khung nền xám nhạt, viền nét đứt và chú thích: "Chỗ này để bạn thêm ảnh/banner nền theo ý muốn (chỉnh sửa trong file UserHome.vue)."
+- Chia phần main-content thành 2 phần: home-top (banner, ảnh, slogan, ...) và home-bottom (sự kiện, sách nổi bật, thông báo, ...).
+- Để lại chú thích cho từng phần để người dùng tự bổ sung nội dung/ảnh theo ý muốn.
+- Hiển thị ảnh banner full chiều ngang phần home-top.
+- Thêm class banner-img cho ảnh banner.
+- Chỉnh CSS: .banner-img width 100%, object-fit: cover, bo góc, .home-top không giới hạn chiều rộng.
+- Sửa CSS để ảnh banner chiếm toàn bộ chiều ngang vùng main-content, không bị dư khoảng trắng bên phải.
+- Xóa max-width, margin auto ở .main-content, đảm bảo .banner-img và .home-top width 100%.
