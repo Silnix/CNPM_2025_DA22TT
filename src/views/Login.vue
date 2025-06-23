@@ -1,117 +1,258 @@
 <template>
-  <div class="login-container">
-    <!-- Left: Logo or Illustration -->
-    <div class="login-left">
-      <img src="../assets/logo.svg" alt="Logo" />
-    </div>
+  <div class="login-page">
+    <div class="login-container">
+      <!-- Left side with image and text -->
+      <div class="login-left">
+        <div class="login-header">
+          <h1>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h1>
+        </div>
+        <div class="login-image">
+          <img src="@/assets/logo.jpg" alt="Library Logo" />
+        </div>
+        <div class="login-footer">
+          <p>TRUNG TÂM HỌC LIỆU - PHÁT TRIỂN DẠI VÀ HỌC</p>
+        </div>
+      </div>
 
-    <!-- Right: Login Form -->
-    <div class="login-right">
-      <h2>Đăng nhập</h2>
-      <form @submit.prevent="login">
-        <input v-model="username" type="text" placeholder="Tên đăng nhập" required />
-        <input v-model="password" type="password" placeholder="Mật khẩu" required />
-        <button type="submit">Đăng nhập</button>
-      </form>
-
-      <!-- Link to Register -->
-      <div class="login-footer">
-        <p>Chưa có tài khoản? <a href="/register">Đăng ký</a></p>
+      <!-- Right side with login form -->
+      <div class="login-right">
+        <div class="form-container">
+          <h2>Đăng nhập</h2>
+          <form @submit.prevent="login">
+            <div class="form-group">
+              <label for="username">Tên đăng nhập</label>
+              <input 
+                id="username"
+                v-model="username" 
+                type="text" 
+                required 
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Mật khẩu</label>
+              <input 
+                id="password"
+                v-model="password" 
+                type="password" 
+                required 
+              />
+            </div>
+            <button type="submit" class="login-btn">Đăng nhập</button>
+          </form>
+          <div class="register-link">
+            <p>Chưa có tài khoản? <a href="/register">Đăng ký ngay</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
-const username = ref('');
-const password = ref('');
+const username = ref('')
+const password = ref('')
+const router = useRouter()
 
-const login = () => {
-  if (username.value && password.value) {
-    alert(`Tên đăng nhập: ${username.value} - Mật khẩu: ${password.value}`);
-  } else {
-    alert("Vui lòng nhập tên đăng nhập và mật khẩu!");
+const login = async () => {
+  if (!username.value || !password.value) {
+    alert('Vui lòng nhập tên đăng nhập và mật khẩu!')
+    return
   }
-};
+  try {
+    const res = await axios.post('http://localhost:5000/api/login', {
+      username: username.value,
+      password: password.value
+    })
+    
+    if (res.data.loai_nguoi_dung === 1) {
+      alert('Chào mừng quay lại quản lý');
+      router.push('/admin-home');
+    } else {
+      alert('Đăng nhập thành công!');
+      router.push('/user-home');
+    }
+  } catch (err) {
+    if (err.response && err.response.data && err.response.data.message) {
+      alert(err.response.data.message)
+    } else {
+      alert('Đăng nhập thất bại!')
+    }
+  }
+}
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+.login-page {
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
 .login-container {
   display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  width: 900px;
+  max-width: 95vw;
+  background: transparent;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 }
 
 .login-left {
   flex: 1;
-  background: #f0f4f8;
+  background: rgba(81, 98, 171, 0.85);
+  backdrop-filter: blur(5px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 40px;
+  color: white;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.login-left img {
-  max-width: 70%;
-  height: auto;
+.login-header h1 {
+  font-family: 'Merriweather', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.login-image img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.login-footer p {
+  font-family: 'Merriweather', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
 }
 
 .login-right {
   flex: 1;
+  background: white;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 3rem;
-  background-color: #ffffff;
-  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.05);
+  padding: 50px 40px;
 }
 
-.login-right h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
+.form-container {
+  width: 100%;
+  max-width: 350px;
+}
+
+.form-container h2 {
+  font-family: 'Merriweather', serif;
+  font-size: 32px;
+  font-weight: 700;
   color: #333;
-}
-
-.login-right form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.login-right input {
-  padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-.login-right button {
-  padding: 0.75rem;
-  background-color: #42b883;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.login-right button:hover {
-  background-color: #33976b;
-}
-
-.login-footer {
-  margin-top: 1rem;
+  margin-bottom: 35px;
   text-align: center;
 }
 
-.login-footer a {
-  color: #42b883;
-  text-decoration: none;
+.form-group {
+  margin-bottom: 25px;
 }
 
-.login-footer a:hover {
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f0f4f8;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 130, 190, 0.5);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(110deg, #6C82BE 0%, #A072D1 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 5px 15px rgba(138, 100, 212, 0.3);
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(138, 100, 212, 0.4);
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.register-link p {
+  color: #666;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #6C82BE;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 820px) {
+  .login-container {
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 </style>
