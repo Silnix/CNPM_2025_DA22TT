@@ -1,0 +1,51 @@
+[Sửa Login.vue] - Gọi API backend /api/login, nếu thành công chuyển sang /user-home, nếu thất bại báo lỗi. (Tự động ghi nhận bởi AI) 
+
+[Kiểm tra đăng nhập] - Backend trả về status 401 khi sai tài khoản/mật khẩu, frontend luôn báo 'Đăng nhập thất bại!' do chỉ kiểm tra err.response?.data?.message. (Tự động ghi nhận bởi AI) 
+
+[Sửa Login.vue] - Hiển thị đúng message lỗi từ backend khi đăng nhập sai, không chỉ báo 'Đăng nhập thất bại!'. (Tự động ghi nhận bởi AI) 
+
+[Sửa backend/index.js] - Đổi tên database kết nối từ 'library_management' thành 'QLTV' để đúng với dữ liệu MongoDB thực tế. (Tự động ghi nhận bởi AI) 
+
+[UserHome.vue] 2024-05-18:
+- Chuyển thanh menu từ ngang sang dọc (sidebar bên trái).
+- Thêm icon SVG cho từng mục menu (Trang chủ, Tìm kiếm, Sách, Cài đặt, Hỗ trợ, Đăng xuất).
+- Chia menu thành 2 phần: MAIN MENU và SUPPORT, giống giao diện mẫu.
+- Phần nội dung chính (main-content) để trống, có khung nền xám nhạt, viền nét đứt và chú thích: "Chỗ này để bạn thêm ảnh/banner nền theo ý muốn (chỉnh sửa trong file UserHome.vue)."
+- Chia phần main-content thành 2 phần: home-top (banner, ảnh, slogan, ...) và home-bottom (sự kiện, sách nổi bật, thông báo, ...).
+- Để lại chú thích cho từng phần để người dùng tự bổ sung nội dung/ảnh theo ý muốn.
+- Hiển thị ảnh banner full chiều ngang phần home-top.
+- Thêm class banner-img cho ảnh banner.
+- Chỉnh CSS: .banner-img width 100%, object-fit: cover, bo góc, .home-top không giới hạn chiều rộng.
+- Sửa CSS để ảnh banner chiếm toàn bộ chiều ngang vùng main-content, không bị dư khoảng trắng bên phải.
+- Xóa max-width, margin auto ở .main-content, đảm bảo .banner-img và .home-top width 100%.
+
+- Sửa giao diện trang đăng nhập và đăng ký theo mẫu.
+- Chỉnh sửa lại giao diện đăng nhập/đăng ký lần 2 theo mẫu chi tiết.
+- Thay đổi nền trang đăng nhập/đăng ký thành màu trắng.
+- Sửa lỗi chữ "VIỆN" bị rớt dòng trên trang đăng nhập/đăng ký.
+- Tạo trang quản trị (AdminHome.vue) với layout sidebar, header, và content.
+- Cấu hình router (router/index.js) để thêm route cho trang quản trị.
+- Cập nhật logic đăng nhập (Login.vue) để phân quyền, chuyển hướng người dùng (quản lý/độc giả) đến đúng trang sau khi đăng nhập.
+- Cập nhật giao diện trang quản trị (AdminHome.vue) để giống với thiết kế: chỉnh sửa banner chào mừng và màu sắc menu.
+
+[Ngày 2024-06-11]
+- Tạo các file model mới: BookModel.js, DanhMucModel.js, TacGiaModel.js, PhieuMuonSachModel.js, MuonTraModel.js
+- Thêm các API CRUD cho:
+  + Sách (/api/books)
+  + Danh mục (/api/categories)
+  + Tác giả (/api/authors)
+  + Phiếu mượn sách (/api/borrow-tickets)
+  + Mượn trả (/api/borrow-returns)
+- Kết nối các model này vào backend/index.js
+
+- Tích hợp Swagger UI và swagger-jsdoc vào backend, tạo endpoint /api-docs để xem tài liệu API.
+
+- Tạo file Dockerfile cho backend Node.js (chạy trên cổng 5000, production best practices).
+
+- Bổ sung chức năng gửi yêu cầu hỗ trợ:
+  + Tạo file backend/SupportModel.js (model Support)
+  + Thêm API POST /api/support vào backend/index.js
+  + Cập nhật UserSupport.vue để gửi yêu cầu thực tế về backend và lưu vào database
+
+- Tạo file frontend/Dockerfile để build và serve frontend bằng nginx (port 80)
+- Tạo file docker-compose.yml để chạy đồng thời MongoDB, backend, frontend
