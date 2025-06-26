@@ -68,7 +68,7 @@ const login = async () => {
       password: password.value
     })
     
-    if (res.data.loai_nguoi_dung === 1) {
+    if (res.data.loai == 1) {
       alert('Chào mừng quay lại quản lý');
       router.push('/admin-home');
     } else {

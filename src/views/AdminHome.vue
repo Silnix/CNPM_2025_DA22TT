@@ -182,13 +182,14 @@ const logout = () => {
   display: flex;
   align-items: center;
   padding: 14px 25px;
-  color: var(--text-color);
+  color: var(--text-color) !important;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease;
   margin: 4px 15px;
   border-radius: 8px;
+  background: none;
 }
 
 .main-menu ul li a svg, .support-menu ul li a svg {
@@ -199,21 +200,17 @@ const logout = () => {
   transition: color 0.3s ease;
 }
 
-.main-menu ul li .router-link-exact-active {
-  background-color: var(--accent-color);
-  color: white;
-  box-shadow: 0 4px 10px rgba(24, 144, 255, 0.3);
+.main-menu ul li .router-link-exact-active, .support-menu ul li .router-link-exact-active {
+  background: var(--active-menu-bg);
+  color: var(--accent-color) !important;
 }
-.main-menu ul li .router-link-exact-active svg {
-  color: white;
+.main-menu ul li .router-link-exact-active svg, .support-menu ul li .router-link-exact-active svg {
+  color: var(--accent-color);
 }
 
-.main-menu ul li a:hover, .support-menu ul li a:hover {
-  background-color: var(--active-menu-bg);
-  color: var(--accent-color);
-}
-.main-menu ul li a:hover svg, .support-menu ul li a:hover svg {
-  color: var(--accent-color);
+.main-menu ul li a:hover, .support-menu ul li a:hover,
+.main-menu ul li a span, .support-menu ul li a span {
+  color: var(--accent-color) !important;
 }
 
 .separator {

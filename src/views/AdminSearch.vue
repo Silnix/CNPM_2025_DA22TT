@@ -29,11 +29,13 @@
     </div>
     
     <div class="search-results">
-      <!-- Kết quả tìm kiếm sẽ được hiển thị ở đây -->
-       <p v-if="!results.length && hasSearched">Không tìm thấy kết quả nào.</p>
-       <ul v-else>
-         <li v-for="book in results" :key="book._id">{{ book.TENSACH }} - {{ book.TACGIA }}</li>
-       </ul>
+      <p v-if="!results.length && hasSearched">Không tìm thấy kết quả nào.</p>
+      <div v-else class="book-list">
+        <div v-for="book in results" :key="book._id" class="book-item" @click="goToDetail(book)">
+          <img :src="book.anh_bia || require('@/assets/logo.jpg')" alt="Ảnh bìa" class="book-cover" />
+          <div class="book-title">{{ book.ten_sach }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -41,11 +43,13 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 const activeTab = ref('lookup');
 const searchQuery = ref('');
 const results = ref([]);
 const hasSearched = ref(false);
+const router = useRouter();
 
 const performSearch = async () => {
   if (!searchQuery.value.trim()) {
@@ -61,6 +65,10 @@ const performSearch = async () => {
     console.error('Lỗi khi tìm kiếm sách:', error);
     results.value = [];
   }
+};
+
+const goToDetail = (book) => {
+  router.push({ name: 'BookDetail', params: { id: book.ID } });
 };
 </script>
 
@@ -126,5 +134,35 @@ const performSearch = async () => {
 }
 .search-results {
   margin-top: 10px;
+}
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.book-item {
+  width: 160px;
+  cursor: pointer;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 10px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.book-item:hover {
+  box-shadow: 0 4px 16px rgba(24,144,255,0.15);
+}
+.book-cover {
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.book-title {
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
 }
 </style> 
