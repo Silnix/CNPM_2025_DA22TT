@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "685ca9ded36eef2c42ab99c5"
+  },
+  "username": "tranphuc",
+  "password": "123456",
+  "ho_ten": "Trần Phúc",
+  "dia_chi": "789 Lê Lợi, Q3, TP.HCM",
+  "email": "tranphuc@example.com",
+  "loai": 2,
+  "ID": "U003"
+},
+{
+  "_id": {
+    "$oid": "685caa23d36eef2c42ab99c6"
+  },
+  "ID": "U002",
+  "username": "dangkhoa",
+  "password": "123456",
+  "ho_ten": "Đăng Khoa",
+  "dia_chi": "456 Trần Hưng Đạo, Q5, TP.HCM",
+  "email": "dangkhoa@example.com",
+  "loai": 2
+},
+{
+  "_id": {
+    "$oid": "685caa3bd36eef2c42ab99c7"
+  },
+  "ID": "U001",
+  "username": "hoanglong",
+  "password": "123456",
+  "dia_chi": "123 Nguyễn Huệ, Q1, TP.HCM",
+  "email": "hoanglong@example.com",
+  "loai": 1
+},
+{
+  "_id": {
+    "$oid": "686a4342b26174f2ed62c2a5"
+  },
+  "ID": "U005",
+  "username": "luanhuu",
+  "password": "123456",
+  "ho_ten": "Hữu Luân",
+  "dia_chi": "càng long chau thanh tra vinh",
+  "email": "1235@gmail.com",
+  "loai": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686a4883b1b1565d17b3027a"
+  },
+  "ID": "U006",
+  "username": "trieu",
+  "password": "123456",
+  "ho_ten": "trieu",
+  "dia_chi": "hai thu",
+  "email": "trieu@gmail.com",
+  "loai": 2,
+  "createdAt": {
+    "$date": "2025-07-06T09:57:23.876Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-06T09:57:23.876Z"
+  },
+  "__v": 0
+}]

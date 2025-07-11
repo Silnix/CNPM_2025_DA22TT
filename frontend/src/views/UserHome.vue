@@ -63,8 +63,22 @@
         <img src="@/assets/anh_banner_nuatren.png" alt="Banner" class="banner-img" />
       </div>
       <div class="home-bottom">
-        <!-- Phần dưới: Sự kiện, sách nổi bật, thông báo, ... (bạn tự bổ sung nội dung ở đây) -->
-        <p>Phần dưới: Sự kiện, sách nổi bật, thông báo, ...</p>
+        <div v-if="loading" class="loading">Đang tải danh sách sách...</div>
+        <div v-else>
+          <h3 style="margin-bottom: 16px;">Tất cả sách trong thư viện</h3>
+          <div class="book-grid">
+            <div v-for="book in books" :key="book.ID" class="book-card" @click="goToBookDetail(book.ID)">
+              <img :src="book.anh_bia || defaultCover" alt="Bìa sách" class="book-cover" />
+              <div class="book-info">
+                <div class="book-title">{{ book.ten_sach }}</div>
+                <div class="book-author">Tác giả: {{ book.tac_gia }}</div>
+                <div class="book-status" :class="{ available: book.trang_thai === 'Có sẵn', unavailable: book.trang_thai !== 'Có sẵn' }">
+                  {{ book.trang_thai }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
@@ -73,21 +87,31 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
-const userName = ref('');
+const books = ref([]);
+const loading = ref(true);
+const defaultCover = 'https://res.cloudinary.com/demo/image/upload/v1690000000/default_book_cover.png';
 
-onMounted(() => {
-  // Lấy thông tin user từ localStorage hoặc Vuex store
-  const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-  userName.value = userInfo.name || 'Người dùng';
+onMounted(async () => {
+  try {
+    const res = await axios.get('http://localhost:5000/api/books');
+    books.value = res.data;
+  } catch (err) {
+    books.value = [];
+  } finally {
+    loading.value = false;
+  }
 });
 
+const goToBookDetail = (id) => {
+  router.push({ name: 'BookDetail', params: { id } });
+};
+
 const logout = () => {
-  // Xóa thông tin đăng nhập
   localStorage.removeItem('userInfo');
   localStorage.removeItem('token');
-  // Chuyển về trang đăng nhập
   router.push('/login');
 };
 </script>
@@ -194,23 +218,23 @@ const logout = () => {
 
 .home-top {
   width: 100%;
-  background: #e9ecef;
-  border-radius: 16px;
-  margin-bottom: 1rem;
-  padding: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   display: flex;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
 }
 
 .banner-img {
   width: 100%;
-  height: auto;
-  border-radius: 16px;
-  display: block;
+  max-width: 100%;
+  height: 50vh;
+  min-height: 200px;
+  max-height: 500px;
   object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: block;
 }
 
 .home-bottom {
@@ -218,10 +242,83 @@ const logout = () => {
   background: #fff;
   border-radius: 16px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   font-size: 1.1rem;
   color: #333;
   border: 1px dashed #bbb;
+  padding: 24px;
+  overflow-x: auto;
+}
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.book-card {
+  background: #fafbfc;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 320px;
+}
+.book-card:hover {
+  box-shadow: 0 4px 16px rgba(33,150,243,0.12);
+  border: 1.5px solid #2196f3;
+}
+.book-cover {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: #f5f5f5;
+}
+.book-info {
+  text-align: center;
+}
+.book-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  color: #222;
+}
+.book-author {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+.book-status {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.book-status.available {
+  color: #2196f3;
+}
+.book-status.unavailable {
+  color: #e74c3c;
+}
+.loading {
+  color: #888;
+  font-style: italic;
 }
 </style>  
