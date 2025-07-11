@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "686b44a8e213532cc4ae03f1"
+  },
+  "ID_phieu": "PM002",
+  "ID_nguoi_dung": "U002",
+  "ngay_muon": "2025-07-07",
+  "trang_thai": "Đã trả",
+  "sach_muon": [
+    "097"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686b51363826ae9a3f56b4e2"
+  },
+  "ID_phieu": "PM003",
+  "ID_nguoi_dung": "U002",
+  "ngay_muon": "2025-07-07",
+  "trang_thai": "Đã trả",
+  "sach_muon": [
+    "031"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686b565d7b8a5bd0ccfc1ca1"
+  },
+  "ID_phieu": "PM004",
+  "ID_nguoi_dung": "U002",
+  "ngay_muon": "2025-07-07",
+  "trang_thai": "Đã trả",
+  "sach_muon": [
+    "031"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686b592f2437fe82651f0fd9"
+  },
+  "ID_phieu": "PM005",
+  "ID_nguoi_dung": "U002",
+  "ngay_muon": "2025-07-07",
+  "trang_thai": "Đã trả",
+  "sach_muon": [
+    "121"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7a1c9c384d53bfbe08e0"
+  },
+  "ID_phieu": "PM006",
+  "ID_nguoi_dung": "U001",
+  "ngay_muon": "2025-07-08",
+  "ngay_tra_du_kien": "2025-07-22",
+  "trang_thai": "Đang mượn",
+  "sach_muon": [
+    "097"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7a849c384d53bfbe0944"
+  },
+  "ID_phieu": "PM007",
+  "ID_nguoi_dung": "U002",
+  "ngay_muon": "2025-07-08",
+  "ngay_tra_du_kien": "2025-07-22",
+  "trang_thai": "Đã trả",
+  "sach_muon": [
+    "139"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7aff18c94bb0054e7234"
+  },
+  "ID_phieu": "PM008",
+  "ID_nguoi_dung": "U002",
+  "ngay_muon": "2025-07-08",
+  "ngay_tra_du_kien": "2025-07-22",
+  "trang_thai": "Đã trả",
+  "sach_muon": [
+    "097"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7bcee56840a2fa17503f"
+  },
+  "ID_phieu": "PM009",
+  "ID_nguoi_dung": "U002",
+  "ngay_muon": "2025-07-08",
+  "ngay_tra_du_kien": "2025-07-22",
+  "trang_thai": "Đã trả",
+  "sach_muon": [
+    "097"
+  ],
+  "__v": 0
+}]

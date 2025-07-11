@@ -1,0 +1,110 @@
+[{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280aa"
+  },
+  "ID_tac_gia": "TG001",
+  "ten_tac_gia": "Nguyễn Nhật Ánh",
+  "quoc_tich": "Việt Nam",
+  "ngay_sinh": "1955-05-07",
+  "tieu_su": "Tác giả nổi tiếng với truyện dài tuổi học trò.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339183/TG001_mwiisv.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280ab"
+  },
+  "ID_tac_gia": "TG002",
+  "ten_tac_gia": "Alec Ross",
+  "quoc_tich": "Hoa Kỳ",
+  "ngay_sinh": "1971-11-30",
+  "tieu_su": "Chuyên gia tương lai học và công nghệ.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339183/TG002_b6kwln.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280ac"
+  },
+  "ID_tac_gia": "TG003",
+  "ten_tac_gia": "Isaac Asimov",
+  "quoc_tich": "Hoa Kỳ",
+  "ngay_sinh": "1920-01-02",
+  "tieu_su": "Nhà văn khoa học viễn tưởng nổi tiếng.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339183/TG003_gnetx0.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280ad"
+  },
+  "ID_tac_gia": "TG004",
+  "ten_tac_gia": "Conan Doyle",
+  "quoc_tich": "Anh",
+  "ngay_sinh": "1859-05-22",
+  "tieu_su": "Tác giả các tác phẩm văn học trinh thám.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339184/TG004_xmejdg.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280ae"
+  },
+  "ID_tac_gia": "TG005",
+  "ten_tac_gia": "J.K. Rowling",
+  "quoc_tich": "Anh",
+  "ngay_sinh": "1965-07-31",
+  "tieu_su": "Tác giả loạt truyện Harry Potter.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339185/TG005_h0radc.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280af"
+  },
+  "ID_tac_gia": "TG006",
+  "ten_tac_gia": "George Orwell",
+  "quoc_tich": "Anh",
+  "ngay_sinh": "1903-06-25",
+  "tieu_su": "Tác giả của 1984 và Animal Farm.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339185/TG006_zrzypq.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280b0"
+  },
+  "ID_tac_gia": "TG007",
+  "ten_tac_gia": "Haruki Murakami",
+  "quoc_tich": "Nhật Bản",
+  "ngay_sinh": "1949-01-12",
+  "tieu_su": "Tác giả nổi tiếng với tiểu thuyết hiện thực kỳ ảo.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339186/TG007_uhx5mp.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280b1"
+  },
+  "ID_tac_gia": "TG008",
+  "ten_tac_gia": "Paulo Coelho",
+  "quoc_tich": "Brazil",
+  "ngay_sinh": "1947-08-24",
+  "tieu_su": "Tác giả của Nhà giả kim.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339187/TG008_fv2una.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280b2"
+  },
+  "ID_tac_gia": "TG009",
+  "ten_tac_gia": "Dan Brown",
+  "quoc_tich": "Hoa Kỳ",
+  "ngay_sinh": "1964-06-22",
+  "tieu_su": "Tác giả của Mật mã Da Vinci.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339188/TG009_g7bfrd.jpg"
+},
+{
+  "_id": {
+    "$oid": "686356b2d1df5ef227f280b3"
+  },
+  "ID_tac_gia": "TG010",
+  "ten_tac_gia": "Nguyễn Huy Thiệp",
+  "quoc_tich": "Việt Nam",
+  "ngay_sinh": "1950-04-29",
+  "tieu_su": "Tác giả truyện ngắn nổi bật giai đoạn đổi mới.",
+  "anh_dai_dien": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339189/TG010_ebs1z0.jpg"
+}]

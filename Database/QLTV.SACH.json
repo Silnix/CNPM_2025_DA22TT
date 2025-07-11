@@ -1,0 +1,270 @@
+[{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280b5"
+  },
+  "ID": "034",
+  "ten_sach": "The Industries of the Future (Công nghiệp tương lai)",
+  "tac_gia": "Alec Ross",
+  "nam_xuat_ban": 2008,
+  "ngon_ngu": "Tiếng Anh",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 810.285 NGX 2014",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-03-02",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339081/ID034_spejmu.jpg",
+  "danh_muc": "Công nghệ thông tin",
+  "ID_danh_muc": "DM001",
+  "so_luong": 0
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280b6"
+  },
+  "ID": "097",
+  "ten_sach": "Lập trình và Cuộc sống",
+  "tac_gia": "Jeff Atwood",
+  "nam_xuat_ban": 2013,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Đang mượn",
+  "vi_tri": "Giá: 810.264 NGX 2013",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-03-02",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339082/ID097_azu2zg.jpg",
+  "danh_muc": "Công nghệ thông tin",
+  "ID_danh_muc": "DM001",
+  "so_luong": 1
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280b7"
+  },
+  "ID": "031",
+  "ten_sach": "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+  "tac_gia": "Ashlee Vance",
+  "nam_xuat_ban": 2012,
+  "ngon_ngu": "Tiếng Anh",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 610.354 NGX 2012",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-04-07",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339081/ID031_w07if1.jpg",
+  "danh_muc": "Kinh tế",
+  "ID_danh_muc": "DM006",
+  "so_luong": 2
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280b8"
+  },
+  "ID": "139",
+  "ten_sach": "The Pragmatic Programmer",
+  "tac_gia": "Andrew Hunt",
+  "nam_xuat_ban": 2014,
+  "ngon_ngu": "Tiếng Anh",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 500.964 NGX 2014",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-04-07",
+  "anh_bia": "https://drive.google.com/file/d/1j5a31N7lsDxycA8MNKbMzJEMZ3aLW93n/view?usp=drive_link",
+  "danh_muc": "Công nghệ thông tin",
+  "ID_danh_muc": "DM001",
+  "so_luong": 6
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280b9"
+  },
+  "ID": "121",
+  "ten_sach": "Code Complete 2",
+  "tac_gia": "Steve McConnell",
+  "nam_xuat_ban": 2009,
+  "ngon_ngu": "Tiếng Anh",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 210.264 NGX 2009",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-04-09",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339081/ID121_wdxyxz.jpg",
+  "danh_muc": "Công nghệ thông tin",
+  "ID_danh_muc": "DM001",
+  "so_luong": 4
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280ba"
+  },
+  "ID": "002",
+  "ten_sach": "Công nghệ 3S = 3S technology",
+  "tac_gia": "Nguyễn Trường Xuân",
+  "nam_xuat_ban": 2014,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 910.285 NGX 2014",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-04-25",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339081/ID002_eedjoe.jpg",
+  "danh_muc": "Khoa học - Kỹ thuật",
+  "ID_danh_muc": "DM005",
+  "so_luong": 2
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280bb"
+  },
+  "ID": "003",
+  "ten_sach": "Công nghệ bảo quản, chế biến nông sản sau thu hoạch.",
+  "tac_gia": "Trần Văn Chương",
+  "nam_xuat_ban": 2000,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 631.56 TRC 2000",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-02-07",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339082/ID003_hyzfcl.jpg",
+  "danh_muc": "Khoa học - Kỹ thuật",
+  "ID_danh_muc": "DM005",
+  "so_luong": 2
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280bc"
+  },
+  "ID": "005",
+  "ten_sach": "Công nghệ rau quả",
+  "tac_gia": "Hà Văn Thuyết",
+  "nam_xuat_ban": 2015,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 664.8 HAT 2015",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-05-30",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339081/ID005_vlhule.jpg",
+  "danh_muc": "Khoa học - Kỹ thuật",
+  "ID_danh_muc": "DM005",
+  "so_luong": 3
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280bd"
+  },
+  "ID": "006",
+  "ten_sach": "Công nghệ bảo quản, chế biến sản phẩm chăn nuôi và cá",
+  "tac_gia": "Trần Văn Chương",
+  "nam_xuat_ban": 2001,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 664.9 TRC 2001",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-08-18",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339081/ID006_rj8moz.jpg",
+  "danh_muc": "Khoa học - Kỹ thuật",
+  "ID_danh_muc": "DM005",
+  "so_luong": 2
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280be"
+  },
+  "ID": "101",
+  "ten_sach": "Sapiens: Lược sử loài người",
+  "tac_gia": "Yuval Noah Harari",
+  "nam_xuat_ban": 2011,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 930 HAR 2011",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-05-15",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339083/ID101_vmcmok.jpg",
+  "danh_muc": "Lịch sử - Địa lý",
+  "ID_danh_muc": "DM008",
+  "so_luong": 0
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280bf"
+  },
+  "ID": "102",
+  "ten_sach": "Khi hơi thở hoá thinh không",
+  "tac_gia": "Paul Kalanithi",
+  "nam_xuat_ban": 2016,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 920 KAL 2016",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-04-27",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339083/ID102_piqsmf.jpg",
+  "danh_muc": "Tâm lý - Kỹ năng sống",
+  "ID_danh_muc": "DM007",
+  "so_luong": 5
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280c0"
+  },
+  "ID": "201",
+  "ten_sach": "Súng, Vi trùng và Thép",
+  "tac_gia": "Jared Diamond",
+  "nam_xuat_ban": 1997,
+  "ngon_ngu": "Tiếng Việt",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 910 DIA 1997",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-06-19",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339082/ID201_riwibg.jpg",
+  "danh_muc": "Lịch sử - Địa lý",
+  "ID_danh_muc": "DM008",
+  "so_luong": 3
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280c1"
+  },
+  "ID": "401",
+  "ten_sach": "How Not to Be Wrong: The Power of Mathematical Thinking",
+  "tac_gia": "Jordan Ellenberg",
+  "nam_xuat_ban": 2014,
+  "ngon_ngu": "English",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 510 ELL 2014",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-05-08",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339082/ID401_riid5q.jpg",
+  "danh_muc": "Khoa học - Kỹ thuật",
+  "ID_danh_muc": "DM005",
+  "so_luong": 3
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280c2"
+  },
+  "ID": "402",
+  "ten_sach": "In Pursuit of the Unknown: 17 Equations That Changed the World",
+  "tac_gia": "Ian Stewart",
+  "nam_xuat_ban": 2012,
+  "ngon_ngu": "English",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 510 STE 2012",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-05-22",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339083/ID402_kckvqj.jpg",
+  "danh_muc": "Khoa học - Kỹ thuật",
+  "ID_danh_muc": "DM005",
+  "so_luong": 4
+},
+{
+  "_id": {
+    "$oid": "686356cdd1df5ef227f280c3"
+  },
+  "ID": "403",
+  "ten_sach": "The Mathematical Experience",
+  "tac_gia": "Philip J. Davis & Reuben Hersh",
+  "nam_xuat_ban": 1981,
+  "ngon_ngu": "English",
+  "trang_thai": "Có sẵn",
+  "vi_tri": "Giá: 510 DAV 1981",
+  "id_nguoi_them": "ID00123",
+  "ngay_them": "2025-05-14",
+  "anh_bia": "https://res.cloudinary.com/ddrdabpn3/image/upload/v1751339083/ID403_c6jjgs.jpg",
+  "danh_muc": "Khoa học - Kỹ thuật",
+  "ID_danh_muc": "DM005",
+  "so_luong": 2
+}]

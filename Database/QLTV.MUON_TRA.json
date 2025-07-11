@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "686c7a5d9c384d53bfbe0926"
+  },
+  "ID_muon_tra": "MT001",
+  "ID_phieu": "PM004",
+  "ID_nguoi_dung": "U002",
+  "ID_sach": "031",
+  "ten_sach": "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",
+  "ngay_muon": "2025-07-07",
+  "ngay_tra": "2025-07-08",
+  "trang_thai": "Đã trả",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7a609c384d53bfbe092e"
+  },
+  "ID_muon_tra": "MT002",
+  "ID_phieu": "PM005",
+  "ID_nguoi_dung": "U002",
+  "ID_sach": "121",
+  "ten_sach": "Code Complete 2",
+  "ngay_muon": "2025-07-07",
+  "ngay_tra": "2025-07-08",
+  "trang_thai": "Đã trả",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7a9e9c384d53bfbe0974"
+  },
+  "ID_muon_tra": "MT003",
+  "ID_phieu": "PM007",
+  "ID_nguoi_dung": "U002",
+  "ID_sach": "139",
+  "ten_sach": "The Pragmatic Programmer",
+  "ngay_muon": "2025-07-08",
+  "ngay_tra_du_kien": "2025-07-22",
+  "ngay_tra": "2025-07-08",
+  "trang_thai": "Đã trả",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7b2518c94bb0054e7259"
+  },
+  "ID_muon_tra": "MT004",
+  "ID_phieu": "PM008",
+  "ID_nguoi_dung": "U002",
+  "ID_sach": "097",
+  "ten_sach": "Lập trình và Cuộc sống",
+  "ngay_muon": "2025-07-08",
+  "ngay_tra_du_kien": "2025-07-22",
+  "ngay_tra": "2025-07-08",
+  "trang_thai": "Đã trả",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686c7be9e56840a2fa175059"
+  },
+  "ID_muon_tra": "MT005",
+  "ID_phieu": "PM009",
+  "ID_nguoi_dung": "U002",
+  "ID_sach": "097",
+  "ten_sach": "Lập trình và Cuộc sống",
+  "ngay_muon": "2025-07-08",
+  "ngay_tra_du_kien": "2025-07-22",
+  "ngay_tra": "2025-07-08",
+  "trang_thai": "Đã trả",
+  "__v": 0
+}]

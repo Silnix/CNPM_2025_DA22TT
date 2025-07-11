@@ -1,0 +1,90 @@
+[{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab999c"
+  },
+  "ID_danh_muc": "DM001",
+  "ten_danh_muc": "Công nghệ thông tin",
+  "mo_ta": "Sách về CNTT, lập trình, phần mềm.",
+  "ngay_tao": "2024-11-01"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab999d"
+  },
+  "ID_danh_muc": "DM002",
+  "ten_danh_muc": "Văn học Việt Nam",
+  "mo_ta": "Tác phẩm văn học trong nước.",
+  "ngay_tao": "2024-11-02"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab999e"
+  },
+  "ID_danh_muc": "DM003",
+  "ten_danh_muc": "Văn học nước ngoài",
+  "mo_ta": "Tác phẩm văn học dịch từ nhiều ngôn ngữ.",
+  "ngay_tao": "2024-11-03"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab999f"
+  },
+  "ID_danh_muc": "DM004",
+  "ten_danh_muc": "Thiếu nhi",
+  "mo_ta": "Sách dành cho trẻ em.",
+  "ngay_tao": "2024-11-04"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab99a0"
+  },
+  "ID_danh_muc": "DM005",
+  "ten_danh_muc": "Khoa học - Kỹ thuật",
+  "mo_ta": "Sách chuyên ngành khoa học và kỹ thuật.",
+  "ngay_tao": "2024-11-05"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab99a1"
+  },
+  "ID_danh_muc": "DM006",
+  "ten_danh_muc": "Kinh tế",
+  "mo_ta": "Sách về kinh doanh, quản lý, kinh tế học.",
+  "ngay_tao": "2024-11-06"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab99a2"
+  },
+  "ID_danh_muc": "DM007",
+  "ten_danh_muc": "Tâm lý - Kỹ năng sống",
+  "mo_ta": "Sách phát triển bản thân, tâm lý học.",
+  "ngay_tao": "2024-11-07"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab99a3"
+  },
+  "ID_danh_muc": "DM008",
+  "ten_danh_muc": "Lịch sử - Địa lý",
+  "mo_ta": "Sách kiến thức lịch sử, địa lý.",
+  "ngay_tao": "2024-11-08"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab99a4"
+  },
+  "ID_danh_muc": "DM009",
+  "ten_danh_muc": "Tôn giáo - Tâm linh",
+  "mo_ta": "Sách về tín ngưỡng, tôn giáo, tâm linh.",
+  "ngay_tao": "2024-11-09"
+},
+{
+  "_id": {
+    "$oid": "685ca89cd36eef2c42ab99a5"
+  },
+  "ID_danh_muc": "DM010",
+  "ten_danh_muc": "Ngoại ngữ",
+  "mo_ta": "Sách học ngoại ngữ, từ điển.",
+  "ngay_tao": "2024-11-10"
+}]
