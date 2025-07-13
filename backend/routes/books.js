@@ -166,6 +166,27 @@ router.get('/', async (req, res) => {
   }
 });
 
+// API lấy danh sách phiếu mượn của 1 user
+router.get('/borrowed/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const phieuList = await PhieuMuon.find({ ID_nguoi_dung: userId });
+    res.json(phieuList);
+  } catch (err) {
+    res.status(500).json({ message: 'Lỗi server', error: err.message });
+  }
+});
+
+// API lấy tất cả phiếu mượn (cho admin)
+router.get('/borrowed', async (req, res) => {
+  try {
+    const phieuList = await PhieuMuon.find();
+    res.json(phieuList);
+  } catch (err) {
+    res.status(500).json({ message: 'Lỗi server', error: err.message });
+  }
+});
+
 /**
  * @swagger
  * /api/books/{id}:
@@ -383,12 +404,43 @@ router.post('/borrow', async (req, res) => {
   }
 });
 
-// API lấy danh sách phiếu mượn của 1 user
-router.get('/borrowed/:userId', async (req, res) => {
+// API yêu cầu trả sách (user gửi yêu cầu)
+router.put('/return-request/:phieuId', async (req, res) => {
   try {
-    const userId = req.params.userId;
-    const phieuList = await PhieuMuon.find({ ID_nguoi_dung: userId });
-    res.json(phieuList);
+    const { phieuId } = req.params;
+    const phieu = await PhieuMuon.findOne({ ID_phieu: phieuId });
+    if (!phieu) return res.status(404).json({ message: 'Không tìm thấy phiếu mượn!' });
+    if (phieu.trang_thai !== 'Đang mượn') return res.status(400).json({ message: 'Phiếu đã trả hoặc không hợp lệ!' });
+
+    phieu.trang_thai = 'Chờ xác nhận trả';
+    await phieu.save();
+
+    res.json({ message: 'Đã gửi yêu cầu trả sách, vui lòng chờ admin xác nhận!', phieu });
+  } catch (err) {
+    res.status(500).json({ message: 'Lỗi server', error: err.message });
+  }
+});
+
+// Sửa API xác nhận trả sách chỉ cho phép khi trạng thái là 'Chờ xác nhận trả'
+router.put('/return/:phieuId', async (req, res) => {
+  try {
+    const { phieuId } = req.params;
+    const phieu = await PhieuMuon.findOne({ ID_phieu: phieuId });
+    if (!phieu) return res.status(404).json({ message: 'Không tìm thấy phiếu mượn!' });
+    if (phieu.trang_thai !== 'Chờ xác nhận trả') return res.status(400).json({ message: 'Chỉ xác nhận phiếu đang chờ xác nhận trả!' });
+
+    phieu.trang_thai = 'Đã trả';
+    phieu.ngay_tra = new Date().toISOString().slice(0,10);
+    await phieu.save();
+
+    // Tăng lại số lượng sách
+    const book = await Book.findOne({ ID: phieu.sach_muon.ID });
+    if (book) {
+      book.so_luong += 1;
+      await book.save();
+    }
+
+    res.json({ message: 'Xác nhận trả sách thành công!', phieu });
   } catch (err) {
     res.status(500).json({ message: 'Lỗi server', error: err.message });
   }

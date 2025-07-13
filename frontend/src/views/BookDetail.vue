@@ -29,6 +29,13 @@
     </div>
   </div>
   <div v-else>Đang tải thông tin sách...</div>
+  <div v-if="showConfirm" class="modal-overlay">
+    <div class="modal-dialog">
+      <p>{{ confirmMessage }}</p>
+      <button @click="muonSachCallback()">Xác nhận</button>
+      <button @click="showConfirm = false">Hủy</button>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -43,6 +50,9 @@ const message = ref('');
 const defaultCover = 'https://res.cloudinary.com/demo/image/upload/v1690000000/default_book_cover.png';
 const suggestedBooks = ref([]);
 const loadingSuggestions = ref(true);
+const showConfirm = ref(false);
+const confirmMessage = ref('');
+let muonSachCallback = null;
 
 const fetchBook = async () => {
   try {
@@ -54,30 +64,40 @@ const fetchBook = async () => {
 };
 
 const muonSach = async () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userId = user && user.ID ? user.ID : null;
+  if (!userId) {
+    message.value = 'Bạn cần đăng nhập để mượn sách!';
+    return;
+  }
+  // Lấy danh sách phiếu mượn của user
   try {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user && user.ID ? user.ID : null;
-    if (!userId) {
-      message.value = 'Bạn cần đăng nhập để mượn sách!';
+    const res = await axios.get(`http://localhost:5000/api/books/borrowed/${userId}`);
+    const daMuon = res.data.some(ticket => ticket.sach_muon.ID === book.value.ID && ticket.trang_thai === 'Đang mượn');
+    if (daMuon) {
+      confirmMessage.value = 'Bạn đã mượn cuốn này rồi. Bạn có chắc muốn mượn thêm một cuốn nữa không?';
+      showConfirm.value = true;
+      muonSachCallback = () => thucHienMuonSach(userId);
       return;
     }
+    await thucHienMuonSach(userId);
+  } catch (err) {
+    message.value = 'Có lỗi xảy ra khi kiểm tra phiếu mượn!';
+  }
+};
+
+const thucHienMuonSach = async (userId) => {
+  try {
     const res = await axios.post('http://localhost:5000/api/books/borrow', {
       ID_nguoi_dung: userId,
       ID_sach: book.value.ID
     });
-    if (res && res.status === 201) {
-      message.value = 'Mượn sách thành công! Ngày trả dự kiến: ' + res.data.ngay_tra_du_kien;
-      book.value.so_luong_thuc_te -= 1;
-    } else {
-      message.value = 'Có lỗi xảy ra khi mượn sách!';
-    }
+    message.value = 'Mượn sách thành công! Ngày trả dự kiến: ' + res.data.ngay_tra_du_kien;
+    book.value.so_luong_thuc_te -= 1;
   } catch (err) {
-    if (err.response && err.response.data && err.response.data.message) {
-      message.value = err.response.data.message;
-    } else {
-      message.value = 'Có lỗi xảy ra khi mượn sách!';
-    }
+    message.value = err.response?.data?.message || 'Có lỗi xảy ra khi mượn sách!';
   }
+  showConfirm.value = false;
 };
 
 const trangThai = computed(() => book.value && book.value.so_luong_thuc_te > 0 ? 'Có sẵn' : 'Đang mượn/hết sách');
@@ -245,6 +265,39 @@ button:hover {
 .loading {
   color: #888;
   font-style: italic;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-dialog {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  text-align: center;
+}
+.modal-dialog button {
+  margin: 0 1rem;
+  padding: 0.6rem 1.8rem;
+  border: none;
+  border-radius: 5px;
+  background: #2196f3;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.modal-dialog button:last-child {
+  background: #aaa;
 }
 @media (max-width: 900px) {
   .book-layout {

@@ -54,9 +54,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in borrowList" :key="item._id || item.id_muon_tra">
-            <td>{{ item.ten_sach }}</td>
-            <td>{{ item.id_nguoi_dung }}</td>
+          <tr v-for="item in danhSachHienThi" :key="item.ID_phieu">
+            <td>{{ item.sach_muon.ten_sach }}</td>
+            <td>{{ item.ID_nguoi_dung }}</td>
             <td>{{ item.ngay_muon }}</td>
             <td>
               <span :class="{ 'overdue': isOverdue(item.ngay_tra_du_kien) }">
@@ -74,18 +74,18 @@
             <td>
               <button v-if="item.trang_thai === 'Chờ xác nhận trả'" @click="xacNhanTra(item)">Xác nhận trả</button>
               <span v-else-if="item.trang_thai === 'Đã trả'">Đã trả</span>
-              <span v-else>-</span>
+              <span v-else>Đang mượn</span>
             </td>
           </tr>
         </tbody>
       </table>
-      <div v-if="borrowList.length === 0">Chưa có phiếu mượn nào.</div>
+      <div v-if="danhSachHienThi.length === 0">Chưa có phiếu mượn nào.</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
@@ -96,40 +96,12 @@ const hasSearched = ref(false);
 const router = useRouter();
 
 const borrowList = ref([]);
+const danhSachHienThi = computed(() => borrowList.value.filter(item => item.trang_thai === 'Chờ xác nhận trả'));
 
 async function fetchBorrowList() {
   try {
-    // Lấy phiếu mượn đang hoạt động
-    const resPhieu = await axios.get('http://localhost:5000/api/borrow-tickets');
-    // Lấy lịch sử đã trả
-    const resTra = await axios.get('http://localhost:5000/api/borrow-returns');
-    // Map phiếu mượn: join sang bảng SACH để lấy tên sách
-    let borrowPhieu = [];
-    for (const item of resPhieu.data.filter(i => i.trang_thai !== 'Đã trả')) {
-      for (const sachId of item.sach_muon) {
-        try {
-          const sachRes = await axios.get(`http://localhost:5000/api/books/${sachId}`);
-          borrowPhieu.push({
-            ten_sach: sachRes.data.ten_sach,
-            ID_nguoi_dung: item.ID_nguoi_dung,
-            ngay_muon: item.ngay_muon,
-            ngay_tra_du_kien: item.ngay_tra_du_kien,
-            trang_thai: item.trang_thai,
-            ID_phieu: item.ID_phieu
-          });
-        } catch {}
-      }
-    }
-    // Map lịch sử đã trả (đã có đủ trường)
-    let borrowTra = resTra.data.map(item => ({
-      ten_sach: item.ten_sach,
-      ID_nguoi_dung: item.ID_nguoi_dung,
-      ngay_muon: item.ngay_muon,
-      ngay_tra_du_kien: item.ngay_tra_du_kien,
-      trang_thai: item.trang_thai,
-      ID_phieu: item.ID_phieu
-    }));
-    borrowList.value = [...borrowPhieu, ...borrowTra];
+    const resPhieu = await axios.get('http://localhost:5000/api/books/borrowed');
+    borrowList.value = resPhieu.data;
   } catch (err) {
     borrowList.value = [];
   }
@@ -141,7 +113,7 @@ watch(activeTab, (tab) => {
 
 let intervalId = null;
 onMounted(() => {
-  if (activeTab.value === 'borrow') fetchBorrowList();
+  fetchBorrowList();
   intervalId = setInterval(() => {
     if (activeTab.value === 'borrow') fetchBorrowList();
   }, 10000); // 10 giây
@@ -190,19 +162,11 @@ const goToDetail = (book) => {
 
 const xacNhanTra = async (item) => {
   try {
-    await axios.put(`http://localhost:5000/api/borrow-tickets/${item.ID_phieu}`, {
-      trang_thai: 'Đã trả',
-      ngay_tra: new Date().toISOString().slice(0,10)
-    });
-    await axios.post('http://localhost:5000/api/borrow-returns', {
-      ...item,
-      trang_thai: 'Đã trả',
-      ngay_tra: new Date().toISOString().slice(0,10)
-    });
+    await axios.put(`http://localhost:5000/api/books/return/${item.ID_phieu}`);
     alert('Đã xác nhận trả sách!');
     fetchBorrowList();
   } catch (err) {
-    alert('Có lỗi khi xác nhận!');
+    alert('Có lỗi khi xác nhận trả sách!');
   }
 };
 </script>

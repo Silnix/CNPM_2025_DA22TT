@@ -63,7 +63,7 @@ const submitRequest = async () => {
       trang_thai: 'dang_muon',
       sach_muon: [selectedBookId.value]
     };
-    await axios.post('http://localhost:5000/api/borrow-tickets', payload);
+    await axios.post('http://localhost:5000/api/books/borrow', payload);
     message.value = 'Gửi yêu cầu mượn sách thành công!';
     success.value = true;
     // Reset form
