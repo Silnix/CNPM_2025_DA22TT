@@ -1,4 +1,10 @@
-<template>
+PS E:\library-management - Copy\frontend> npm test
+
+> frontend@0.0.0 test
+> echo "No test specified for frontend" && exit 0
+
+"No test specified for frontend" 
+PS E:\library-management - Copy\frontend> <template>
   <div class="search-page">
     <div class="search-tabs">
       <button 
