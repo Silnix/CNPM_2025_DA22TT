@@ -5,10 +5,11 @@ const phieuMuonSchema = new mongoose.Schema({
   ID_nguoi_dung: { type: String, required: true },
   ngay_muon: { type: String, required: true },
   ngay_tra_du_kien: { type: String, required: true },
+  ngay_tra: { type: String },
   trang_thai: { type: String, default: 'Đang mượn' },
   sach_muon: { type: Object, required: true }
 }, {
-  collection: 'PHIEUMUON'
+  collection: 'PHIEUMUONSACH'
 });
 
 module.exports = mongoose.model('PhieuMuon', phieuMuonSchema); 

@@ -86,14 +86,15 @@ const isOverdue = (dueDate) => {
 
 const traSach = async (book) => {
   try {
-    await axios.put(`http://localhost:5000/api/borrow-tickets/${book.ID_phieu}`, {
-      trang_thai: 'Chờ xác nhận trả',
-      ngay_tra: new Date().toISOString().slice(0,10)
-    });
-    alert('Yêu cầu trả sách đã gửi, vui lòng chờ admin xác nhận!');
+    await axios.put(`http://localhost:5000/api/books/return-request/${book.ID_phieu}`);
+    alert('Đã gửi yêu cầu trả sách, vui lòng chờ admin xác nhận!');
     fetchBorrowedBooks();
   } catch (err) {
-    alert('Có lỗi khi gửi yêu cầu trả sách!');
+    if (err.response && err.response.data && err.response.data.message) {
+      alert('Lỗi: ' + err.response.data.message);
+    } else {
+      alert('Có lỗi khi gửi yêu cầu trả sách!');
+    }
   }
 };
 
