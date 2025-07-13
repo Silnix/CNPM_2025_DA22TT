@@ -17,6 +17,8 @@ const routes = [
   { path: '/user-book-lookup', component: () => import('@/views/UserBookLookup.vue') },
   { path: '/user-borrow-request', component: () => import('@/views/UserBorrowRequest.vue') },
   { path: '/user-support', component: UserSupport },
+  { path: '/user-settings', component: () => import('../views/UserSettings.vue') },
+  { path: '/test', component: { template: '<div>Test Page</div>' } },
   {
     path: '/admin',
     component: AdminHome,

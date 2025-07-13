@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models/BookModel');
 const MuonTra = require('../models/MuonTraModel');
+const PhieuMuon = require('../models/PhieuMuonModel');
 const { normalizeString, levenshtein } = require('../utils/helpers');
 
 /**
@@ -118,6 +119,12 @@ router.post('/', async (req, res) => {
     // Validate các trường bắt buộc
     if (!ID || !ten_sach || !tac_gia || !ngon_ngu || !danh_muc || !ID_danh_muc || !so_luong) {
       return res.status(400).json({ message: 'Thiếu thông tin bắt buộc!' });
+    }
+    
+    // Kiểm tra ID sách đã tồn tại chưa
+    const existingBook = await Book.findOne({ ID });
+    if (existingBook) {
+      return res.status(409).json({ message: 'ID sách đã tồn tại!' });
     }
 
     // Xử lý trạng thái sách tự động
@@ -240,7 +247,14 @@ router.get('/:id', async (req, res) => {
  */
 router.put('/:id', async (req, res) => {
   try {
-    const book = await Book.findOneAndUpdate({ ID: req.params.id }, req.body, { new: true });
+    const updateData = { ...req.body };
+    
+    // Tự động cập nhật trạng thái sách dựa trên số lượng
+    if (updateData.so_luong !== undefined) {
+      updateData.trang_thai = updateData.so_luong > 0 ? 'Có sẵn' : 'Hết sách';
+    }
+    
+    const book = await Book.findOneAndUpdate({ ID: req.params.id }, updateData, { new: true });
     if (!book) return res.status(404).json({ message: 'Không tìm thấy sách' });
     res.json(book);
   } catch (err) {
@@ -316,6 +330,67 @@ router.get('/:id/available', async (req, res) => {
     res.json({ ...book.toObject(), so_luong_thuc_te });
   } catch (err) {
     res.status(500).json({ message: 'Lỗi khi lấy sách', error: err.message });
+  }
+});
+
+// Hàm sinh ID phiếu mượn mới
+async function generatePhieuId() {
+  const last = await PhieuMuon.findOne().sort({ ID_phieu: -1 });
+  if (!last) return 'PM001';
+  const num = parseInt(last.ID_phieu.replace('PM', '')) + 1;
+  return 'PM' + num.toString().padStart(3, '0');
+}
+
+// API mượn sách
+router.post('/borrow', async (req, res) => {
+  try {
+    const { ID_nguoi_dung, ID_sach } = req.body;
+    if (!ID_nguoi_dung || !ID_sach) return res.status(400).json({ message: 'Thiếu thông tin!' });
+
+    // Lấy thông tin sách
+    const book = await Book.findOne({ ID: ID_sach });
+    if (!book || book.so_luong <= 0) return res.status(400).json({ message: 'Sách không còn!' });
+
+    // Sinh ID phiếu mượn mới
+    const ID_phieu = await generatePhieuId();
+
+    // Ngày mượn và ngày trả dự kiến
+    const ngay_muon = new Date();
+    const ngay_tra_du_kien = new Date(ngay_muon.getTime() + 14*24*60*60*1000);
+
+    // Tạo phiếu mượn
+    const phieu = new PhieuMuon({
+      ID_phieu,
+      ID_nguoi_dung,
+      ngay_muon: ngay_muon.toISOString().slice(0,10),
+      ngay_tra_du_kien: ngay_tra_du_kien.toISOString().slice(0,10),
+      trang_thai: 'Đang mượn',
+      sach_muon: {
+        ID: book.ID,
+        ten_sach: book.ten_sach,
+        tac_gia: book.tac_gia
+      }
+    });
+    await phieu.save();
+
+    // Giảm số lượng sách
+    book.so_luong -= 1;
+    await book.save();
+
+    res.status(201).json(phieu);
+  } catch (err) {
+    res.status(500).json({ message: 'Lỗi server', error: err.message });
+  }
+});
+
+// API lấy danh sách phiếu mượn của 1 user
+router.get('/borrowed/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const phieuList = await PhieuMuon.find({ ID_nguoi_dung: userId });
+    res.json(phieuList);
+  } catch (err) {
+    res.status(500).json({ message: 'Lỗi server', error: err.message });
   }
 });
 

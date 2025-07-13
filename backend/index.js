@@ -9,8 +9,6 @@ const userRoutes = require('./routes/users');
 const bookRoutes = require('./routes/books');
 const categoryRoutes = require('./routes/categories');
 const authorRoutes = require('./routes/authors');
-const borrowTicketRoutes = require('./routes/borrowTickets');
-const borrowReturnRoutes = require('./routes/borrowReturns');
 const supportRoutes = require('./routes/support');
 const statsRoutes = require('./routes/stats');
 
@@ -66,8 +64,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/authors', authorRoutes);
-app.use('/api/borrow-tickets', borrowTicketRoutes);
-app.use('/api/borrow-returns', borrowReturnRoutes);
 app.use('/api/support', supportRoutes);
 app.use('/api/stats', statsRoutes);
 
