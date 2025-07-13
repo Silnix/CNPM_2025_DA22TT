@@ -61,12 +61,12 @@ const muonSach = async () => {
       message.value = 'Bạn cần đăng nhập để mượn sách!';
       return;
     }
-    const res = await axios.post('http://localhost:5000/api/borrow-tickets', {
-      ID_sach: book.value.ID,
-      ID_nguoi_dung: userId
+    const res = await axios.post('http://localhost:5000/api/books/borrow', {
+      ID_nguoi_dung: userId,
+      ID_sach: book.value.ID
     });
     if (res && res.status === 201) {
-      message.value = 'Mượn sách thành công!';
+      message.value = 'Mượn sách thành công! Ngày trả dự kiến: ' + res.data.ngay_tra_du_kien;
       book.value.so_luong_thuc_te -= 1;
     } else {
       message.value = 'Có lỗi xảy ra khi mượn sách!';

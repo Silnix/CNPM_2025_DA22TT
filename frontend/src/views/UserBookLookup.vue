@@ -60,43 +60,18 @@ const fetchBorrowedBooks = async () => {
     return;
   }
   try {
-    // Lấy tất cả phiếu mượn của user
-    const res = await axios.get(`http://localhost:5000/api/borrow-tickets/user/${userId}`);
+    // Lấy tất cả phiếu mượn của user (API mới)
+    const res = await axios.get(`http://localhost:5000/api/books/borrowed/${userId}`);
     const tickets = res.data;
-
-    // Gom tất cả ID sách đã mượn
-    let allBookIds = [];
-    tickets.forEach(ticket => {
-      allBookIds = allBookIds.concat(ticket.sach_muon);
-    });
-    // Loại bỏ trùng lặp
-    allBookIds = [...new Set(allBookIds)];
-
-    // Lấy thông tin chi tiết các sách (gọi tuần tự nếu chưa có API nhiều ID)
-    const booksMap = {};
-    for (const id of allBookIds) {
-      try {
-        const bookRes = await axios.get(`http://localhost:5000/api/books/${id}`);
-        booksMap[id] = bookRes.data;
-      } catch {}
-    }
-
-    // Map dữ liệu để hiển thị từng cuốn sách đã mượn
-    borrowedBooks.value = [];
-    tickets.forEach(ticket => {
-      ticket.sach_muon.forEach(sachId => {
-        const sach = booksMap[sachId] || {};
-        borrowedBooks.value.push({
-          ID: sach.ID || sachId,
-          ten_sach: sach.ten_sach || '',
-          tac_gia: sach.tac_gia || '',
-          ngay_muon: ticket.ngay_muon,
-          ngay_tra_du_kien: ticket.ngay_tra_du_kien,
-          trang_thai: ticket.trang_thai,
-          ID_phieu: ticket.ID_phieu
-        });
-      });
-    });
+    borrowedBooks.value = tickets.map(ticket => ({
+      ID: ticket.sach_muon.ID,
+      ten_sach: ticket.sach_muon.ten_sach,
+      tac_gia: ticket.sach_muon.tac_gia,
+      ngay_muon: ticket.ngay_muon,
+      ngay_tra_du_kien: ticket.ngay_tra_du_kien,
+      trang_thai: ticket.trang_thai,
+      ID_phieu: ticket.ID_phieu
+    }));
   } catch (err) {
     borrowedBooks.value = [];
   }

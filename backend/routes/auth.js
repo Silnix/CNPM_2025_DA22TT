@@ -97,6 +97,12 @@ router.post('/register', async (req, res) => {
     if (!username || !password || !ho_ten || !dia_chi || !email) {
       return res.status(400).json({ message: 'Vui lòng nhập đầy đủ thông tin!' });
     }
+    
+    // Kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Email không đúng định dạng!' });
+    }
     // Kiểm tra username hoặc email đã tồn tại
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
@@ -117,7 +123,16 @@ router.post('/register', async (req, res) => {
     });
     await newUser.save();
     console.log('Đã lưu user mới vào database:', newUser);
-    res.status(201).json({ message: 'Đăng ký thành công!', user: newUser });
+    // Không trả về password trong response
+    const userResponse = {
+      ID: newUser.ID,
+      username: newUser.username,
+      ho_ten: newUser.ho_ten,
+      email: newUser.email,
+      dia_chi: newUser.dia_chi,
+      loai: newUser.loai
+    };
+    res.status(201).json({ message: 'Đăng ký thành công!', user: userResponse });
   } catch (err) {
     console.error('Lỗi khi đăng ký:', err);
     res.status(500).json({ message: 'Lỗi server khi đăng ký', error: err.message });
