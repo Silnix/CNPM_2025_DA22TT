@@ -59,7 +59,7 @@ app.get('/api/ping', (req, res) => {
 });
 
 // Routes
-app.use('/api', authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/categories', categoryRoutes);
