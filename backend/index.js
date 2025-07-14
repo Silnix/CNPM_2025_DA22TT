@@ -11,6 +11,8 @@ const categoryRoutes = require('./routes/categories');
 const authorRoutes = require('./routes/authors');
 const supportRoutes = require('./routes/support');
 const statsRoutes = require('./routes/stats');
+const borrowTicketRoutes = require('./routes/borrowTickets');
+const borrowReturnRoutes = require('./routes/borrowReturns');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -66,6 +68,8 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/authors', authorRoutes);
 app.use('/api/support', supportRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/borrow-tickets', borrowTicketRoutes);
+app.use('/api/borrow-returns', borrowReturnRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
