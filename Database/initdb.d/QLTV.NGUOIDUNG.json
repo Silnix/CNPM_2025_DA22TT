@@ -1,0 +1,5 @@
+{"username": "tranphuc", "password": "123456", "ho_ten": "Trần Phúc", "dia_chi": "789 Lê Lợi, Q3, TP.HCM", "email": "tranphuc@example.com", "loai": 2, "ID": "U003"}
+{"ID": "U002", "username": "dangkhoa", "password": "123456", "ho_ten": "Đăng Khoa", "dia_chi": "456 Trần Hưng Đạo, Q5, TP.HCM", "email": "dangkhoa@example.com", "loai": 2}
+{"ID": "U001", "username": "hoanglong", "password": "123456", "dia_chi": "123 Nguyễn Huệ, Q1, TP.HCM", "email": "hoanglong@example.com", "loai": 1}
+{"ID": "U005", "username": "luanhuu", "password": "123456", "ho_ten": "Hữu Luân", "dia_chi": "càng long chau thanh tra vinh", "email": "1235@gmail.com", "loai": 2}
+{"ID": "U006", "username": "trieu", "password": "123456", "ho_ten": "trieu", "dia_chi": "hai thu", "email": "trieu@gmail.com", "loai": 2}

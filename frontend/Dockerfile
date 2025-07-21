@@ -1,5 +1,5 @@
 # Build stage
-FROM node:18-alpine as build
+FROM node:18-alpine AS build
 
 # Tạo user không phải root
 RUN addgroup -g 1001 -S nodejs
@@ -32,8 +32,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Tạo user nginx nếu chưa có
-RUN addgroup -g 1001 -S nginx && \
-    adduser -S nginx -u 1001 -G nginx
+# RUN addgroup -g 1001 -S nginx && \
+#     adduser -S nginx -u 1001 -G nginx
 
 # Set quyền cho thư mục
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
