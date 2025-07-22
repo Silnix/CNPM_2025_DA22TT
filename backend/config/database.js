@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/qltv';
+    const uri = process.env.MONGO_URI || 'mongodb+srv://phandangkhoawork:JiKMnFFWopw3Hac4@qltv.tl6vupn.mongodb.net/QLTV?retryWrites=true&w=majority';
     await mongoose.connect(uri); // Không cần truyền options nữa
     console.log('✅ Kết nối MongoDB thành công!');
   } catch (err) {
