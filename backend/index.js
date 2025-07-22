@@ -83,6 +83,6 @@ app.use('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(Server đang chạy trên port ${PORT});
-  console.log(Swagger docs: http://localhost:${PORT}/api-docs);
-}); 
+  console.log(`Server đang chạy trên port ${PORT}`);
+  console.log(`Swagger docs: http://localhost:${PORT}/api-docs`);
+});
