@@ -11,13 +11,18 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5000',
+        url: 'https://celri.onrender.com',  // ✅ URL thật của server deploy trên Render
+        description: 'Render production server',
+      },
+      {
+        url: 'http://localhost:5000',        // ✅ Dùng khi chạy local
         description: 'Development server',
       },
     ],
   },
-  apis: ['./routes/*.js'], // Đường dẫn đến các file route
+  apis: ['./routes/*.js'],
 };
+
 
 const specs = swaggerJsdoc(options);
 
