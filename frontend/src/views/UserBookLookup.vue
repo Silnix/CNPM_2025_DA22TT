@@ -48,7 +48,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios'
 
 const borrowedBooks = ref([]);
 
@@ -61,7 +61,7 @@ const fetchBorrowedBooks = async () => {
   }
   try {
     // Lấy tất cả phiếu mượn của user (API mới)
-    const res = await axios.get(`http://localhost:5000/api/books/borrowed/${userId}`);
+    const res = await api.get(`/books/borrowed/${userId}`);
     const tickets = res.data;
     borrowedBooks.value = tickets.map(ticket => ({
       ID: ticket.sach_muon.ID,
@@ -86,7 +86,7 @@ const isOverdue = (dueDate) => {
 
 const traSach = async (book) => {
   try {
-    await axios.put(`http://localhost:5000/api/books/return-request/${book.ID_phieu}`);
+    await api.put(`/books/return-request/${book.ID_phieu}`);
     alert('Đã gửi yêu cầu trả sách, vui lòng chờ admin xác nhận!');
     fetchBorrowedBooks();
   } catch (err) {

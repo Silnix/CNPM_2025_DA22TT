@@ -41,7 +41,7 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import axios from 'axios';
+import api from '@/api/axios'
 
 const route = useRoute();
 const router = useRouter();
@@ -56,7 +56,7 @@ let muonSachCallback = null;
 
 const fetchBook = async () => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/books/${route.params.id}/available`);
+    const res = await api.get(`/books/${route.params.id}/available`);
     book.value = res.data;
   } catch (err) {
     book.value = null;
@@ -72,7 +72,7 @@ const muonSach = async () => {
   }
   // Lấy danh sách phiếu mượn của user
   try {
-    const res = await axios.get(`http://localhost:5000/api/books/borrowed/${userId}`);
+    const res = await api.get(`/books/borrowed/${userId}`);
     const daMuon = res.data.some(ticket => ticket.sach_muon.ID === book.value.ID && ticket.trang_thai === 'Đang mượn');
     if (daMuon) {
       confirmMessage.value = 'Bạn đã mượn cuốn này rồi. Bạn có chắc muốn mượn thêm một cuốn nữa không?';
@@ -88,7 +88,7 @@ const muonSach = async () => {
 
 const thucHienMuonSach = async (userId) => {
   try {
-    const res = await axios.post('http://localhost:5000/api/books/borrow', {
+    const res = await api.post('/books/borrow', {
       ID_nguoi_dung: userId,
       ID_sach: book.value.ID
     });
@@ -105,7 +105,7 @@ const trangThai = computed(() => book.value && book.value.so_luong_thuc_te > 0 ?
 const fetchSuggestions = async () => {
   loadingSuggestions.value = true;
   try {
-    const res = await axios.get('http://localhost:5000/api/books');
+    const res = await api.get('/books');
     // Lọc bỏ sách hiện tại, ép kiểu ID khi so sánh
     const otherBooks = res.data.filter(b => String(b.ID) !== String(route.params.id));
     suggestedBooks.value = otherBooks.sort(() => 0.5 - Math.random()).slice(0, 4);

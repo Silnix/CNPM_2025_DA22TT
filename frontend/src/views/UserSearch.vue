@@ -53,7 +53,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios';
 
 const books = ref([]);
 const categories = ref([]);
@@ -65,11 +65,12 @@ const loading = ref(false);
 const fetchBooks = async () => {
   loading.value = true;
   try {
-    let url = 'http://localhost:5000/api/books';
+    let url = import.meta.env.VITE_API_BASE_URL + '/books';
     if (searchQuery.value.trim() !== '') {
-      url = `http://localhost:5000/api/books/search?q=${encodeURIComponent(searchQuery.value)}`;
-    }
-    const res = await axios.get(url);
+	  url = `${import.meta.env.VITE_API_BASE_URL}/books/search?q=${encodeURIComponent(searchQuery.value)}`;
+	}
+
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/books`);
     books.value = res.data;
   } catch (err) {
     books.value = [];
@@ -80,7 +81,7 @@ const fetchBooks = async () => {
 
 const fetchCategories = async () => {
   try {
-    const res = await axios.get('http://localhost:5000/api/categories');
+    const res = await api.get('/categories');
     categories.value = res.data;
   } catch (err) {
     categories.value = [];

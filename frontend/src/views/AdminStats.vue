@@ -70,7 +70,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios'
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
@@ -96,19 +96,19 @@ const refreshStats = async () => {
   loading.value = true;
   try {
     // Lấy thống kê tổng quan
-    const overviewRes = await axios.get('http://localhost:5000/api/stats/overview');
+    const overviewRes = await api.get('/stats/overview');
     overview.value = overviewRes.data;
 
     // Lấy thống kê đăng ký
-    const registrationRes = await axios.get('http://localhost:5000/api/stats/registrations');
+    const registrationRes = await api.get('/stats/registrations');
     registrationData.value = registrationRes.data;
 
     // Lấy thống kê mượn sách
-    const borrowRes = await axios.get('http://localhost:5000/api/stats/borrows');
+    const borrowRes = await api.get('/stats/borrows');
     borrowData.value = borrowRes.data;
 
     // Lấy thống kê sách theo danh mục
-    const categoryRes = await axios.get('http://localhost:5000/api/stats/books-by-category');
+    const categoryRes = await api.get('/stats/books-by-category');
     categoryData.value = categoryRes.data;
 
     // Vẽ lại biểu đồ

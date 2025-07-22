@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios';
 
 const availableBooks = ref([]);
 const selectedBookId = ref('');
@@ -38,7 +38,7 @@ const success = ref(false);
 
 const fetchAvailableBooks = async () => {
   try {
-    const res = await axios.get('http://localhost:5000/api/books');
+    const res = await api.get('/books');
     availableBooks.value = res.data.filter(book => book.trang_thai === 'Có sẵn');
   } catch (err) {
     availableBooks.value = [];
@@ -63,7 +63,7 @@ const submitRequest = async () => {
       trang_thai: 'dang_muon',
       sach_muon: [selectedBookId.value]
     };
-    await axios.post('http://localhost:5000/api/books/borrow', payload);
+    await api.post('/books/borrow', payload);
     message.value = 'Gửi yêu cầu mượn sách thành công!';
     success.value = true;
     // Reset form

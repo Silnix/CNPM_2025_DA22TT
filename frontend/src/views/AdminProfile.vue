@@ -73,7 +73,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios'
 
 const users = ref([]);
 const loading = ref(true);
@@ -84,7 +84,7 @@ const fetchUsers = async () => {
   loading.value = true;
   try {
     // Sử dụng API riêng để lấy chỉ users loại 2
-    const res = await axios.get('http://localhost:5000/api/users/readers');
+    const res = await api.get('/users/readers');
     console.log('API Response:', res.data); // Debug log
     users.value = res.data.users || [];
     console.log('Users loại 2:', users.value); // Debug log
@@ -108,7 +108,7 @@ const closeEditModal = () => {
 
 const saveUser = async () => {
   try {
-    const res = await axios.put(`http://localhost:5000/api/users/${editingUser.value.ID}`, {
+    const res = await api.put(`/users/${editingUser.value.ID}`, {
       ho_ten: editingUser.value.ho_ten,
       dia_chi: editingUser.value.dia_chi,
       email: editingUser.value.email
@@ -128,7 +128,7 @@ const deleteUser = async (userId) => {
   }
   
   try {
-    const res = await axios.delete(`http://localhost:5000/api/users/${userId}`);
+    const res = await api.delete(`/users/${userId}`);
     alert(res.data.message);
     fetchUsers(); // Refresh danh sách
   } catch (err) {

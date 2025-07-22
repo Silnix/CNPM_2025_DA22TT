@@ -87,7 +87,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import api from '@/api/axios';
 
 const router = useRouter();
 const books = ref([]);
@@ -96,7 +96,7 @@ const defaultCover = 'https://res.cloudinary.com/demo/image/upload/v1690000000/d
 
 onMounted(async () => {
   try {
-    const res = await axios.get('http://localhost:5000/api/books');
+    const res = await api.get('/books');
     books.value = res.data;
   } catch (err) {
     books.value = [];

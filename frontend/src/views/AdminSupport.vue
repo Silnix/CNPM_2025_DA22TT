@@ -24,7 +24,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios'
 
 const supports = ref([]);
 const loading = ref(true);
@@ -32,7 +32,7 @@ const loading = ref(true);
 const fetchSupports = async () => {
   loading.value = true;
   try {
-    const res = await axios.get('http://localhost:5000/api/support');
+    const res = await api.get('/support');
     supports.value = res.data;
   } catch (err) {
     supports.value = [];

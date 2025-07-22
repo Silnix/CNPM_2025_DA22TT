@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios';
 
 const title = ref('');
 const content = ref('');
@@ -37,7 +37,7 @@ const submitSupport = async () => {
     return;
   }
   try {
-    await axios.post('http://localhost:5000/api/support', { title: title.value, content: content.value });
+    await api.post('/support', { title: title.value, content: content.value });
     message.value = 'Gửi yêu cầu hỗ trợ thành công! Chúng tôi sẽ phản hồi sớm nhất.';
     success.value = true;
     title.value = '';

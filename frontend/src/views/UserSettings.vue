@@ -52,7 +52,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios';
 
 const defaultAvatar = '/src/assets/logo.jpg';
 const user = ref({ ho_ten: '', email: '', dia_chi: '', sdt: '', avatar: '', ID: '' });
@@ -70,7 +70,7 @@ const userId = localUser.ID || localUser.id || localUser._id || '';
 const fetchUserInfo = async () => {
   if (!userId) return;
   try {
-    const res = await axios.get(`http://localhost:5000/api/users/${userId}`);
+    const res = await api.get(`/users/${userId}`);
     user.value = res.data;
   } catch (err) {
     message.value = 'Không lấy được thông tin tài khoản!';
@@ -80,7 +80,7 @@ const fetchUserInfo = async () => {
 
 const updateProfile = async () => {
   try {
-    await axios.put(`http://localhost:5000/api/users/${userId}`, user.value);
+    await api.put(`/users/${userId}`, user.value);
     message.value = 'Cập nhật thông tin thành công!';
     success.value = true;
     localStorage.setItem('user', JSON.stringify(user.value));
@@ -102,7 +102,7 @@ const changePassword = async () => {
     return;
   }
   try {
-    await axios.put(`http://localhost:5000/api/users/${userId}/change-password`, {
+    await api.put(`/users/${userId}/change-password`, {
       oldPassword: oldPassword.value,
       newPassword: newPassword.value
     });

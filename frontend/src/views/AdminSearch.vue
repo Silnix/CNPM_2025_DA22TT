@@ -92,7 +92,7 @@ PS E:\library-management - Copy\frontend> <template>
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios'
 import { useRouter } from 'vue-router';
 
 const activeTab = ref('lookup');
@@ -106,7 +106,7 @@ const danhSachHienThi = computed(() => borrowList.value.filter(item => item.tran
 
 async function fetchBorrowList() {
   try {
-    const resPhieu = await axios.get('http://localhost:5000/api/books/borrowed');
+    const resPhieu = await api.get('/books/borrowed');
     borrowList.value = resPhieu.data;
   } catch (err) {
     borrowList.value = [];
@@ -154,7 +154,7 @@ const performSearch = async () => {
   }
   hasSearched.value = true;
   try {
-    const response = await axios.get(`http://localhost:5000/api/books/search?q=${searchQuery.value}`);
+    const response = await api.get(`/books/search?q=${searchQuery.value}`);
     results.value = response.data;
   } catch (error) {
     console.error('Lỗi khi tìm kiếm sách:', error);
@@ -168,7 +168,7 @@ const goToDetail = (book) => {
 
 const xacNhanTra = async (item) => {
   try {
-    await axios.put(`http://localhost:5000/api/books/return/${item.ID_phieu}`);
+    await api.put(`/books/return/${item.ID_phieu}`);
     alert('Đã xác nhận trả sách!');
     fetchBorrowList();
   } catch (err) {

@@ -111,7 +111,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import api from '@/api/axios'
 
 const books = ref([]);
 const loading = ref(false);
@@ -136,7 +136,7 @@ const form = ref({
 const fetchBooks = async () => {
   loading.value = true;
   try {
-    const res = await axios.get('http://localhost:5000/api/books');
+    const res = await api.get('/books')
     books.value = res.data;
   } catch (err) {
     books.value = [];
@@ -148,11 +148,11 @@ const fetchBooks = async () => {
 const saveBook = async () => {
   try {
     if (editingBook.value) {
-      await axios.put(`http://localhost:5000/api/books/${form.value.ID}`, form.value);
+	  await api.put(`/books/${form.value._id}`, form.value)
       message.value = 'Cập nhật sách thành công!';
     } else {
       form.value.ID = 'S' + Date.now();
-      await axios.post('http://localhost:5000/api/books', form.value);
+      await api.post('/books', form.value);
       message.value = 'Thêm sách mới thành công!';
     }
     closeForm();
@@ -171,7 +171,7 @@ const editBook = (book) => {
 const deleteBook = async (id) => {
   if (!confirm('Bạn có chắc muốn xóa sách này?')) return;
   try {
-    await axios.delete(`http://localhost:5000/api/books/${id}`);
+    await api.delete(`/books/${id}`);
     message.value = 'Xóa sách thành công!';
     fetchBooks();
   } catch (err) {
