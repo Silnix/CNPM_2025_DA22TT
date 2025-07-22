@@ -282,7 +282,67 @@ router.put('/:id', async (req, res) => {
     res.status(400).json({ message: 'Lỗi khi cập nhật sách', error: err.message });
   }
 });
-
+/**
+ * @swagger
+ * /api/books/{id}:
+ *   patch:
+ *     summary: Cập nhật một phần thông tin sách
+ *     tags:
+ *       - Book
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID sách
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               ten_sach:
+ *                 type: string
+ *               tac_gia:
+ *                 type: string
+ *               nam_xuat_ban:
+ *                 type: number
+ *               ngon_ngu:
+ *                 type: string
+ *               vi_tri:
+ *                 type: string
+ *               anh_bia:
+ *                 type: string
+ *               danh_muc:
+ *                 type: string
+ *               ID_danh_muc:
+ *                 type: string
+ *               so_luong:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Cập nhật thành công
+ *       404:
+ *         description: Không tìm thấy sách
+ *       400:
+ *         description: Lỗi dữ liệu
+ */
+router.patch('/:id', async (req, res) => {
+  try {
+    const updateData = { ...req.body };
+    // Tự động cập nhật trạng thái sách dựa trên số lượng nếu có
+    if (updateData.so_luong !== undefined) {
+      updateData.trang_thai = updateData.so_luong > 0 ? 'Có sẵn' : 'Hết sách';
+    }
+    const book = await Book.findOneAndUpdate({ ID: req.params.id }, updateData, { new: true });
+    if (!book) return res.status(404).json({ message: 'Không tìm thấy sách' });
+    res.json(book);
+  } catch (err) {
+    res.status(400).json({ message: 'Lỗi khi cập nhật sách', error: err.message });
+  }
+});
 /**
  * @swagger
  * /api/books/{id}:

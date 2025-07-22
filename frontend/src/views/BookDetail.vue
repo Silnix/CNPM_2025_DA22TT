@@ -8,7 +8,10 @@
         <p><b>Năm xuất bản:</b> {{ book.nam_xuat_ban }}</p>
         <p><b>Ngôn ngữ:</b> {{ book.ngon_ngu }}</p>
         <p><b>Thể loại:</b> {{ book.danh_muc }}</p>
-        <p><b>Trạng thái:</b> <span :style="{color: book.so_luong_thuc_te > 0 ? 'green' : 'red'}">{{ trangThai }}</span></p>
+        <p><b>Trạng thái:</b> 
+          <span v-if="(book.so_luong_thuc_te ?? book.so_luong) > 0" style="color:green">Có sẵn</span>
+          <span v-else style="color:red">Hết sách</span>
+        </p>
         <p v-if="book.mo_ta"><b>Mô tả:</b> {{ book.mo_ta }}</p>
         <button v-if="book.so_luong_thuc_te > 0" @click="muonSach">Mượn sách</button>
         <div v-else class="out-of-stock">Hết sách</div>

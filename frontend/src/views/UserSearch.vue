@@ -1,8 +1,11 @@
 <template>
   <div class="user-search">
     <h2>Tìm kiếm Sách Nâng Cao</h2>
-    <div class="search-bar">
-      <input v-model="searchQuery" @keyup.enter="fetchBooks" placeholder="Từ khóa tên sách hoặc tác giả..." />
+    <div class="search-bar" style="position:relative;">
+      <input v-model="searchQuery" @input="onInput" @keyup.enter="fetchBooks" placeholder="Từ khóa tên sách hoặc tác giả..." @focus="showSuggestions = true" @blur="hideSuggestions" />
+      <ul v-if="showSuggestions && suggestions.length" class="suggestion-list">
+        <li v-for="(item, idx) in suggestions" :key="idx" @mousedown.prevent="selectSuggestion(item)">{{ item }}</li>
+      </ul>
       <select v-model="selectedCategory">
         <option value="">-- Thể loại --</option>
         <option v-for="cat in categories" :key="cat.ID_danh_muc" :value="cat.ten_danh_muc">{{ cat.ten_danh_muc }}</option>
@@ -61,16 +64,45 @@ const searchQuery = ref('');
 const selectedCategory = ref('');
 const selectedStatus = ref('');
 const loading = ref(false);
+// Gợi ý autocomplete
+const suggestions = ref([]);
+const showSuggestions = ref(false);
+
+const onInput = async () => {
+  const query = searchQuery.value.trim();
+  if (!query) {
+    suggestions.value = [];
+    return;
+  }
+  try {
+    // Gọi API search để lấy gợi ý động
+    const res = await api.get(`/books/search?q=${encodeURIComponent(query)}`);
+    // Lấy tên sách và tác giả, loại trùng lặp, giới hạn 8 gợi ý
+    const allNames = res.data.map(b => b.ten_sach).concat(res.data.map(b => b.tac_gia));
+    suggestions.value = Array.from(new Set(allNames)).filter(Boolean).slice(0, 8);
+  } catch (err) {
+    suggestions.value = [];
+  }
+};
+
+const selectSuggestion = (item) => {
+  searchQuery.value = item;
+  showSuggestions.value = false;
+  fetchBooks();
+};
+
+const hideSuggestions = () => {
+  setTimeout(() => { showSuggestions.value = false; }, 150);
+};
 
 const fetchBooks = async () => {
   loading.value = true;
   try {
-    let url = import.meta.env.VITE_API_BASE_URL + '/books';
+    let url = '/books';
     if (searchQuery.value.trim() !== '') {
-	  url = `${import.meta.env.VITE_API_BASE_URL}/books/search?q=${encodeURIComponent(searchQuery.value)}`;
-	}
-
-    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/books`);
+      url = `/books/search?q=${encodeURIComponent(searchQuery.value)}`;
+    }
+    const res = await api.get(url);
     books.value = res.data;
   } catch (err) {
     books.value = [];

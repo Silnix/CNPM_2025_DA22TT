@@ -72,8 +72,9 @@
               <div class="book-info">
                 <div class="book-title">{{ book.ten_sach }}</div>
                 <div class="book-author">Tác giả: {{ book.tac_gia }}</div>
-                <div class="book-status" :class="{ available: book.trang_thai === 'Có sẵn', unavailable: book.trang_thai !== 'Có sẵn' }">
-                  {{ book.trang_thai }}
+                <div class="book-status">
+                  <span v-if="(book.so_luong_thuc_te ?? book.so_luong) > 0" style="color:#2196f3; font-weight:600;">Có sẵn</span>
+                  <span v-else style="color:#e74c3c; font-weight:600;">Hết sách</span>
                 </div>
               </div>
             </div>

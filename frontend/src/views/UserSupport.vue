@@ -15,8 +15,8 @@
     <div v-if="message" :class="{'success': success, 'error': !success}" class="message">{{ message }}</div>
     <div class="contact-info">
       <h3>Hoặc liên hệ trực tiếp:</h3>
-      <p>Email: support@celri.vn</p>
-      <p>Hotline: 0123 456 789</p>
+      <p>Email: khoadangphan307@gmail.com</p>
+      <p>Hotline: 0867570650 </p>
     </div>
   </div>
 </template>

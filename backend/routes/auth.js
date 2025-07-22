@@ -5,7 +5,7 @@ const { generateNewId } = require('../utils/helpers');
 
 /**
  * @swagger
- * /api/login:
+ * /api/auth/login:
  *   post:
  *     summary: Đăng nhập
  *     tags:

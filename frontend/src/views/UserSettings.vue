@@ -16,10 +16,6 @@
           <input v-model="user.email" type="email" required />
         </div>
         <div class="form-group">
-          <label>Số điện thoại:</label>
-          <input v-model="user.sdt" type="text" />
-        </div>
-        <div class="form-group">
           <label>Địa chỉ:</label>
           <input v-model="user.dia_chi" type="text" />
         </div>
@@ -55,7 +51,7 @@ import { ref, onMounted } from 'vue';
 import api from '@/api/axios';
 
 const defaultAvatar = '/src/assets/logo.jpg';
-const user = ref({ ho_ten: '', email: '', dia_chi: '', sdt: '', avatar: '', ID: '' });
+const user = ref({ ho_ten: '', email: '', dia_chi: '', avatar: '', ID: '' });
 const message = ref('');
 const success = ref(false);
 const oldPassword = ref('');
