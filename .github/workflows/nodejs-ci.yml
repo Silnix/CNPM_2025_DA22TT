@@ -1,0 +1,29 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js 18
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install npm dependencies
+      run: npm install
+
+    - name: Run tests
+      run: |
+        if [ -f test-admin-functions.js ]; then node test-admin-functions.js; fi
+        if [ -f test-register.js ]; then node test-register.js; fi
+        if [ -f test-stats.js ]; then node test-stats.js; fi
